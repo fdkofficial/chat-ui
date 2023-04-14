@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .chatbot-container {
+            width: 300px;
+            height: 400px;
+            background-color: #f2f2f2;
+            border-radius: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .chatbot-header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding: 10px 0;
+        }
+
+        .chatbot-messages {
+            height: 300px;
+            overflow-y: scroll;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .user-message {
+            display: inline-block;
+            clear: both;
+            float: left !important;
+        }
+
+        .message-container {
+            margin-bottom: 10px;
+        }
+
+        .chatbot-message {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            float: right;
+            clear: both;
+            display: inline-block;
+        }
+
+        .chatbot-input-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        #chatbot-input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="chatbot-container">
+        <div class="chatbot-header">
+            <h3>ChatOn</h3>
+        </div>
+        <div id="chatbot-messages"></div>
+        <div class="chatbot-input-container">
+            <input type="text" id="chatbot-input" placeholder="Type your message here...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+</body>
+<script>
+    function sendMessage() {
+        var message = document.getElementById("chatbot-input").value;
+        var messageContainer = document.createElement("div");
+        messageContainer.classList.add("message-container");
+        var newMessage = document.createElement("p");
+        newMessage.classList.add("chatbot-message");
+        newMessage.classList.add("user-message");
+        newMessage.innerText = message;
+        messageContainer.appendChild(newMessage);
+        document.getElementById("chatbot-messages").appendChild(messageContainer);
+        var botMessage = document.createElement("p");
+        botMessage.classList.add("chatbot-message");
+        switch (message.toLowerCase()) {
+            case "hi":
+            case "hello":
+                botMessage.innerText = "Hello, how can I help you today?";
+                break;
+            case "help":
+                botMessage.innerText = "I can help you with information about time and date.";
+                break;
+            case "time":
+                newMessage.innerText = "The current time is " + new Date().toLocaleTimeString();
+                break;
+            case "date":
+                newMessage.innerText = "The current date is " + new Date().toLocaleDateString();
+                break;
+            default:
+                botMessage.innerText = "I'm sorry, I didn't understand your command.";
+                break;
+        }
+        messageContainer.appendChild(botMessage);
+        document.getElementById("chatbot-input").value = "";
+    }
+
+</script>
+
+</html>

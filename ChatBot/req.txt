@@ -1,0 +1,11 @@
+pyttsx3
+speechRecognition
+pyjokes
+wikipedia
+BeautifulSoup4
+pillow
+sockets
+pyfirmata
+pyaudio
+pylisten
+folium
